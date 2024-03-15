@@ -96,7 +96,9 @@ def get_ad_category(
 application_json = {
     "タイトル": "「究極の可愛さ！フルーツパラダイス」",
     "CTAテキスト": "「今すぐ遊んでみよう！」",
-    "画像説明": detect_gpt_4_vision(encode_image("data/ad_image/application.png"), "png"),
+    "画像説明": detect_gpt_4_vision(
+        encode_image("data/ad_image/application.png"), "png"
+    ),
 }
 
 category_list = [
@@ -115,9 +117,30 @@ category_list = [
     "インターネット",
     "WEBサービス",
     "ゲーム",
+    "飲食",
 ]
 
-res = get_ad_category("data/ad_image/application.png", application_json, category_list)
+book_json = {
+    "タイトル": "「今宵のお楽しみ」",
+    "CTAテキスト": "キャンペーンをチェック！",
+    "画像説明": detect_gpt_4_vision(encode_image("data/ad_image/book.png"), "png"),
+}
 
-print(application_json)
+chocolate_json = {
+    "タイトル": "「感性を刺激する、上質なチョコレート体験」",
+    "CTAテキスト": "今すぐ味わう",
+    "画像説明": detect_gpt_4_vision(
+        encode_image("data/ad_image/chocolate.jpg"), "jpeg"
+    ),
+}
+
+hatomugi_json = {
+    "タイトル": "「肌悩みに革命を！独自成分で実現するクリアスキン」",
+    "CTAテキスト": "限定価格で購入する",
+    "画像説明": detect_gpt_4_vision(encode_image("data/ad_image/hatomugi.png"), "png"),
+}
+
+
+res = get_ad_category("data/ad_image/hatomugi.png", hatomugi_json, category_list)
+
 print(res)
