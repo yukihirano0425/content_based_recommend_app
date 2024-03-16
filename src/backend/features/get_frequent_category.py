@@ -1,14 +1,4 @@
 import pandas as pd
-from pathlib import Path
-import sys
-
-sys.path.append(str(Path().absolute()))
-from src.backend.data_loader import load_dataset
-
-
-df = load_dataset.main(
-    "取引明細_transactions.csv", "カテゴリマスタ_categories.csv", "category_id", "id"
-)
 
 # TODO: 「カード返済」「ATM引き出し」「振替」「振込手数料」「手数料」など特定カテゴリを排除する
 # TODO: 消費カテゴリごとの重み付けを行う
@@ -16,14 +6,12 @@ df = load_dataset.main(
 # TODO: カテゴリがないuserに対しては、どのようにカテゴリ付与するのか考える
 
 
-def get_frequent_category(df: pd.DataFrame, account_id_col: str, category_col: str):
+def get_frequent_category(
+    df: pd.DataFrame, account_id_col: str, category_col: str
+) -> pd.DataFrame:
     grouped = (
         df.groupby([account_id_col, category_col]).size().reset_index(name="counts")
     )
     return grouped.sort_values("counts", ascending=False).drop_duplicates(
         account_id_col
     )
-
-
-frequent_category = get_frequent_category(df, "account_id", "name_ja")
-print(frequent_category.value_counts("name_ja"))

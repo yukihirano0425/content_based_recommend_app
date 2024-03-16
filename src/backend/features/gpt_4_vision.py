@@ -139,8 +139,3 @@ hatomugi_json = {
     "CTAテキスト": "限定価格で購入する",
     "画像説明": detect_gpt_4_vision(encode_image("data/ad_image/hatomugi.png"), "png"),
 }
-
-
-res = get_ad_category("data/ad_image/hatomugi.png", hatomugi_json, category_list)
-
-print(res)
